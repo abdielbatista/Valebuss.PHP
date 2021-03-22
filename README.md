@@ -1,0 +1,93 @@
+# LEMBRETE IMPORTANTE 
+
+Ao fazer um “git clone” ou “git pull” do nosso repositório para um diretório em sua máquina, depois de concluído, lembre de alterar a base URL em App/Config/App.php para a URL padrão de seu servidor local em sua maquina.
+
+# Versões
+
+As versões dos arquivos do sistema são numerada com três(3) caracteres numéricos, como no exemplo V.1.1.3. Ao chegar no nove(9) o próximo caractere é o zero(0) e o da esquerda é atualizado e assim por diante, como no exemplo:
+
+- V.1.1.9
+- V.1.2.0
+- V.1.2.1
+
+
+ps: Não seguimos nenhum padrão de versões de software. Este ultilizado aqui, foi desenvolvido por nos desenvolvedores do Encurt.
+
+Arquivos com a versão V.1 são padrões do sistema, e nunca sofrerão nenhuma edição desde sua criação. Caso precisem ser alterados receberão a numeração da versão atual que o sistema web estiver, já que se forem atualizados foram para ser recebido melhorias da última versão em questão.
+
+## Descrição dos títulos de versões
+ 
+Além de numeração às versão possui títulos que servem como uma pequena descrição do que de novo foi implementado na mesma.
+
+Implementação: Significa que algo novo foi adicionado a versão. O que foi adicionado vem logo em seguida desta palavra:
+ 
+Implementação da pag: Significa que uma nova página estática foi adicionada.
+
+Implementação dos métodos de login: Significa que uma nova funcionalidade foi adicionada ao sistema.
+
+Att da pag/método: Significa que foi adicionado uma atualização a uma parte do código já existente.
+
+# Linguagens 
+
+Utilizamos a linguagem PHP para programação WEB atrelado ao framework CodeIgniter como uma forma de facilitar a escrita, o uso dos padrões MVC  e a depuração do código. 
+
+Além disso, usamos HTML para desenvolvimento das páginas, Bootstrap para design atrativo e intuitivo do sistema, além dele foi usado o CSS,  em componentes que o framework visual não foi considerado o ideal por nos.
+
+
+# CodeIgniter 4 Framework
+
+## What is CodeIgniter?
+
+CodeIgniter is a PHP full-stack web framework that is light, fast, flexible, and secure. 
+More information can be found at the [official site](http://codeigniter.com).
+
+This repository holds the distributable version of the framework,
+including the user guide. It has been built from the 
+[development repository](https://github.com/codeigniter4/CodeIgniter4).
+
+More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+
+The user guide corresponding to this version of the framework can be found
+[here](https://codeigniter4.github.io/userguide/). 
+
+
+## Important Change with index.php
+
+`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
+for better security and separation of components.
+
+This means that you should configure your web server to "point" to your project's *public* folder, and
+not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
+framework are exposed.
+
+**Please** read the user guide for a better explanation of how CI4 works!
+The user guide updating and deployment is a bit awkward at the moment, but we are working on it!
+
+## Repository Management
+
+We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+FEATURE REQUESTS.
+
+This repository is a "distribution" one, built by our release preparation script. 
+Problems with it can be raised on our forum, or as issues in the main repository.
+
+## Contributing
+
+We welcome contributions from the community.
+
+Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing.md) section in the development repository.
+
+## Server Requirements
+
+PHP version 7.2 or higher is required, with the following extensions installed: 
+
+- [intl](http://php.net/manual/en/intl.requirements.php)
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+
+Additionally, make sure that the following extensions are enabled in your PHP:
+
+- json (enabled by default - don't turn it off)
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
+- xml (enabled by default - don't turn it off)
