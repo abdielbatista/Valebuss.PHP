@@ -10,7 +10,7 @@ class pessoa_model extends Model
         protected $returnType     = 'object';
         protected $useSoftDeletes = false;
     
-        protected $allowedFields = ['nome','email', 'senha', 'hash_rec_senha'];
+protected $allowedFields = ['nome','email', 'senha' /*, 'hash_rec_senha'*/];
     
         protected $useTimestamps = false;
         protected $createdField  = 'created_at';

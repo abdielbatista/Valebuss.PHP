@@ -7,7 +7,7 @@ class user_model extends Model
     protected $table      = 'usuarios';
     protected $primaryKey = 'email';    
 
-    protected $allowedFields = ['nome', 'email', 'senha','ip', 'data_login', 'horario_login', 'hash_rec_senha'];
+    protected $allowedFields = ['nome', 'email', 'senha','hash_rec_senha'];
     protected $returnType     = 'array';
 
 

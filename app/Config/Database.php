@@ -34,7 +34,7 @@ class Database extends \CodeIgniter\Database\Config
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => '',
-		'database' => 'bd_encurtador',
+		'database' => 'valebuss',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
