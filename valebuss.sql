@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Mar-2021 às 01:26
+-- Tempo de geração: 25-Mar-2021 às 00:21
 -- Versão do servidor: 10.4.16-MariaDB
 -- versão do PHP: 7.4.12
 
@@ -41,7 +41,6 @@ CREATE TABLE `cidades` (
 --
 
 CREATE TABLE `usuarios` (
-  `cpf` varchar(14) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(50) NOT NULL
@@ -54,7 +53,7 @@ CREATE TABLE `usuarios` (
 --
 
 CREATE TABLE `usuario_viagem` (
-  `cod_usuario` varchar(11) NOT NULL,
+  `cod_usuario` varchar(100) NOT NULL,
   `cod_viagem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -69,7 +68,7 @@ CREATE TABLE `veiculos` (
   `marca` varchar(80) NOT NULL,
   `modelo` varchar(80) NOT NULL,
   `qt_lugares` int(11) NOT NULL,
-  `cod_usuario` varchar(11) NOT NULL
+  `cod_usuario` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -97,7 +96,7 @@ CREATE TABLE `viagens` (
   `cidade_destino` int(11) NOT NULL,
   `horario_saida` time NOT NULL,
   `descricao` text NOT NULL,
-  `cod_usuario` varchar(11) NOT NULL
+  `cod_usuario` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -114,7 +113,7 @@ ALTER TABLE `cidades`
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`cpf`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Índices para tabela `usuario_viagem`
@@ -170,14 +169,14 @@ ALTER TABLE `viagens`
 -- Limitadores para a tabela `usuario_viagem`
 --
 ALTER TABLE `usuario_viagem`
-  ADD CONSTRAINT `usuario_viagem_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`cpf`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_viagem_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuario_viagem_ibfk_2` FOREIGN KEY (`cod_viagem`) REFERENCES `viagens` (`cod_viagem`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `veiculos`
 --
 ALTER TABLE `veiculos`
-  ADD CONSTRAINT `veiculos_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`cpf`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `veiculos_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `viagem_cidade`
@@ -190,7 +189,7 @@ ALTER TABLE `viagem_cidade`
 -- Limitadores para a tabela `viagens`
 --
 ALTER TABLE `viagens`
-  ADD CONSTRAINT `viagens_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`cpf`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `viagens_ibfk_1` FOREIGN KEY (`cod_usuario`) REFERENCES `usuarios` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `viagens_ibfk_2` FOREIGN KEY (`cidade_origem`) REFERENCES `cidades` (`cod_cidade`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `viagens_ibfk_3` FOREIGN KEY (`cidade_destino`) REFERENCES `cidades` (`cod_cidade`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;

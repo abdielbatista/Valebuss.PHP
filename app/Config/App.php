@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/curt-urls/public';
+	public $baseURL = 'http://localhost/valebuss/public';
 
 	/*
 	|--------------------------------------------------------------------------
