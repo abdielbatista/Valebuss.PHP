@@ -62,7 +62,7 @@
         <?php if ($logado == 0): ?>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a href="<?php echo base_url("site/login") ?>">
+                <a href="<?php echo base_url("/") ?>">
                     <button type="button" class="btn btn-outline-info" style="color:white;">Login</button>
                 </a>
 
@@ -86,8 +86,6 @@
             </button>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="<?php echo base_url("historicourls/hist") ?>">Historico de URL's</a>
-                <a class="dropdown-item" href="#" onClick="abreModal()">Alterar Dados do perfil</a>
                 <a class="dropdown-item" href="<?php echo base_url("auth/logout") ?>">Sair</a>
             </div>
         </div>

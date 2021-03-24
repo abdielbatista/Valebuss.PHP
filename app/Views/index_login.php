@@ -15,7 +15,7 @@ echo $this->include('includes/footer');
 
 <!-- Modal -->
 
-<<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,6 +24,9 @@ echo $this->include('includes/footer');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <br>
+
             <form>
 
                 <table class="table">
@@ -31,17 +34,17 @@ echo $this->include('includes/footer');
                         <tr>
                             <th scope="row">Nome</th>
                             <td><?php echo $session->get('nome') ?></td>
-                            <!-- <td><i class="fas fa-edit"></td> -->
+                            <!--<td><i class="fas fa-edit"></td> -->
                         </tr>
                         <tr>
                             <th scope="row">Email</th>
                             <td><?php echo $session->get('email') ?></td>
-                             <!--<td><i class="fas fa-edit"></td> -->
+                            <!--<td><i class="fas fa-edit"></td> -->
                         </tr>
                         <tr>
                             <th scope="row">Senha</th>
                             <td>************</td>
-                            <td><i class="fas fa-edit" href="#" style="cursor:pointer" onClick="abreModal2()"></i></td>
+                            <td><i class="fas fa-edit" href="#"   style="cursor:pointer" onClick="abreModal2()"></i></td>
                         </tr>
                     </tbody>
                 </table>
@@ -60,107 +63,118 @@ echo $this->include('includes/footer');
 
 
 
-
-<div class="card-group container-md card border border-dark" style="height: 28rem; padding-left:0px; padding-right:0px">
+<div class="card-group card border border-dark" style="height: 33rem; padding-left:0px; padding-right:0px">
     <div class="card">
         <div class="card-body">
 
-            <h5 class="text-center" style="font-weight:bold">Cole a URL a ser encurtada</h5>
-            <br>
 
-            <?php if (isset($erro_url)) : ?>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <?php echo $erro_url; ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <?php endif; ?>
-
-
-            <div class="d-flex justify-content-center">
-
-                <form class="form-inline" method="post" action="<?php echo base_url("encurtador/shortUrl") ?>">
-                    <br>
-                    <div class="form-group mx-sm- mb- col-lg">
-                        <input id="encurtar" name="encurtar" class="form-control border border-dark" id="url" placeholder="Encurte o seu link" size="60">
-
-                        <button type="submit" class="btn btn-danger border border-dark col-sm-">Encurtar</button>
-                    </div>
+            <h4 class="text-center" style="font-weight:bold">Veja as caronas postadas</h4>
 
 
 
+         
 
-                </form>
-            </div>
             <div class="t">
+                <table class="table table-hover ">
+                    <thead class="" style="background-color:#ccffb3">
+                        <tr>
+                            <?php if (isset($urls)) : ?>
+                                <th scope="col">ID</th>
+                                <th scope="col">URL original</th>
+                                <th scope="col">URL encurtada</th>
+                                <th scope="col">Acessos</th>
+                                <th scope="col">Copiar</th>
+                                <th scope="col">Apagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                <br>
+                        <?php $c = 1;
+                                arsort($urls);
+                                foreach ($urls as $url) : ?>
 
-                
-                <?php if (isset($urlShort)) : ?>
-                    <div class="alert alert-info" role="alert">
-                    <div class="d-flex content-center">
+                            <tr>
+                                <td style="font-weight:bold"> <?php echo $c ?> </td>
+                                <td> <a href="<?php echo $url['url_long'] ?>" target="_blank"> <?php echo $url['url_long'] ?> </a> </td>
+                                <td> <a href="<?php echo $urli . $url['url_short'] ?>" target="_blank"> <?php echo $urli . $url['url_short'] ?> </a> </td>
 
-                        <p class="text-succes font-weight-bold" name="url" id="url">
-                            URL encurtada:
-                            <div class="form-group mx-sm- mb- col-lg">
-                                <input id="inputTest" value="<?php echo $urlShort; ?>" class="form-control border border-dark font-weight-bold" readonly>
-                            </div>
+                                <td> <?php echo $url['quant_acessos'] ?></td>
 
-                            <div class="">
-                                <button class="btn btn-success border border-dark center" onclick="copiarTexto()">Copiar</button>
-                            </div>
+                                <td class="text-primary"><span class="material-icons">
+                                        content_copy
+                                    </span>
 
-                            
-                        </p>
-                    </div>
+                                </td>
+                                <td class="text-primary text"><span class="material-icons">
+                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal<?= $url['id'] ?>">
+                                            <i class="fa fa-trash text-sucesses" aria-hidden="true"></i>
+                                        </button>
 
-
-
-                        <script>
-                            let copiarTexto = () => {
-                                //captura o elemento input
-                                const inputTest = document.querySelector("#inputTest");
-
-                                //seleciona todo o texto do elemento
-                                inputTest.select();
-                                //executa o comando copy
-                                //aqui é feito o ato de copiar para a area de trabalho com base na seleção
-                                document.execCommand('copy');
-                            };
-                        </script>
-                    </div>
-                <?php endif; ?>
-               
-
-                <div class="alert alert-danger" role="alert">
-                    <h5 class="text-center">Lembrete: Veja e gerencie seu Histórico de Url's <a href="<?php echo base_url('historicourls/hist') ?>"><button class="btn btn-outline-danger">AQUI</button></a> e tenha acesso a pagina para visualização</h5>
-                </div>
-
-                <br>
-                <br>
-                <br>
-                <br>
+                                </td>
 
 
+                                <!-- Button trigger modal -->
 
 
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?= $url['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Opa, Jovem!</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Tem certeza que quer excluir a URL: <a class="text-danger" href="<?php echo $url['url_short'] ?>"> <?php echo $url['url_short'] ?> </a> do seu histórico ?
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form method="post" action="<?php echo base_url('delete/del') ?>">
+                                                    <input type="hidden" name="id" value="<?php echo $url['id'] ?>">
+                                                    <button type="submit" name="btn-delete" class="btn btn-danger">Confirmar exclusão</button>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php $c++ ?>
+
+                            </tr>
+
+
+                        <?php endforeach ?>
+
+                    </tbody>
+                <?php endif ?>
+
+                </table>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        $(function() {
-            $(".btn").on("click", function() {
-                $.ajax({
-                    url: <?php base_url('user/historico') ?>,
-                    success: function(result) {
-                        $(table).html(result);
-                    }
-                });
+<script>
+    $(function() {
+        $(".btn").on("click", function() {
+            $.ajax({
+                url: <?php base_url('user/historico') ?>,
+                success: function(result) {
+                    $(table).html(result);
+                }
             });
         });
-    </script>
+    });
+</script>
 
-    <!-- Grid row -->
+
+<script>
+    /*$(document).ready(function () {
+    setTimeout(function () {
+        window.location.reload(1);
+    }, 8000); //tempo em milisegundos. Neste caso, o refresh vai acontecer de 5 em 5 segundos.
+});*/
+</script>
