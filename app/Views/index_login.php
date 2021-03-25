@@ -44,7 +44,7 @@ echo $this->include('includes/footer');
                         <tr>
                             <th scope="row">Senha</th>
                             <td>************</td>
-                            <td><i class="fas fa-edit" href="#"   style="cursor:pointer" onClick="abreModal2()"></i></td>
+                            <td><i class="fas fa-edit" href="#" style="cursor:pointer" onClick="abreModal2()"></i></td>
                         </tr>
                     </tbody>
                 </table>
@@ -68,11 +68,64 @@ echo $this->include('includes/footer');
         <div class="card-body">
 
 
-            <h4 class="text-center" style="font-weight:bold">Veja as caronas postadas</h4>
+            <h5 class="text-center" style="font-weight:bold">Veja as caronas em aberto ou
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">PUBLIQUE UMA</button>
+            </h5>
 
 
 
-         
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cadastre sua viagem</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Endereço de saida</label>
+                                    <input type="text" class="form-control" id="endsaida" aria-describedby="text" placeholder="Rua X, Vila, 20">
+                                    <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Endereço de destino</label>
+                                    <input type="text" class="form-control" id="endchegada" aria-describedby="text" placeholder="Instituto Federal">
+                                    <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cidade de saida</label>
+                                    <input type="text" class="form-control" id="cidsaida" aria-describedby="text" placeholder="Araçuaí">
+                                    <small id="text" class="form-text text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cidade de chegada</label>
+                                    <input type="text" class="form-control" id="cidchegada" aria-describedby="text" placeholder="Araçuaí">
+                                    <small id="text" class="form-text text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Observação</label>
+                                    <input type="text" class="form-control" id="obs" aria-describedby="text" placeholder="Descreva a viagem caso seja nescessario">
+                                    <small id="text" class="form-text text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Publicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <div class="t">
                 <table class="table table-hover ">

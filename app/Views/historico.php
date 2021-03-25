@@ -68,29 +68,12 @@ echo $this->include('includes/footer');
         <div class="card-body">
 
 
-            <h4 class="text-center" style="font-weight:bold">Histórico de Url's</h4>
-
-            <?php if (isset($msgSuc)) : ?>
-
-                <script>
-                    window.onload = function() {
-                        M.toast({
-                            html: '<?php echo $msgSuc ?>'
-                        })
-                    };
-                </script>
-
-            <?php endif; ?>
+            <h5 class="text-center" style="font-weight:bold">Veja as caronas em aberto ou 
+                <a href="<?php echo base_url("/historico");?>"><button type="button" class="btn btn-info">PUBLIQUE UMA</button></h5></a>
 
 
-            <?php if (isset($erro)) : ?>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <?php echo $erro; ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <?php endif; ?>
+
+         
 
             <div class="t">
                 <table class="table table-hover ">

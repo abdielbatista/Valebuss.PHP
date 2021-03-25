@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\CLI\CLI;
 
-class HistoricoUrls extends BaseController
+class Historico extends BaseController
 {
 
     public function Hist()
