@@ -57,6 +57,53 @@ class User extends BaseController
 		return view('index_login', $data);
 	}
 
+	public function publica_carona(){
+		if(! $this->isLoggedIn()){
+
+			$this->session->setFlashData ('msgErro', 'Faça o login primeiro.');
+
+			return redirect()->to(base_url('site/login'));
+		}
+		
+		$endsaida = $this->request->getPost('endsaida');
+		$endchegada = $this->request->getPost('endchegada');
+		$cidsaida = $this->request->getPost('cidsaida');
+		$cidchegada = $this->request->getPost('cidchegada');
+		$horario = $this->request->getPost('horario');
+		$obs = $this->request->getPost('obs');
+
+		$public_carona_model = new \App\Models\public_carona_model();
+		
+		$dados = [
+			'cod_viagem' => "",
+			'end_origem' => $endsaida,
+			'end_destino' => $endchegada,
+			'cidade_origem' => $cidsaida,
+			'cidade_destino' => $cidchegada,
+			'horario_saida' => $horario,
+			'descricao' =>  $obs,
+			'cod_usuario' => "gabasan12@gmail.com"
+		];
+
+		$public_carona_model = new \App\Models\public_carona_model(); 
+		$public_carona_model->insert($dados);
+		
+		
+
+
+		//$session = session();
+        //$log = $session->get('logado');
+        //$nome = $session->get('nome');
+        //$id = $session->get('id');
+
+        $data['titulo'] = "CurtURL's - Página Inicial";
+        $data['logado'] = $this->isLoggedIn();
+
+		return redirect()->to(base_url('user/index_login'));
+
+		
+	}
+
 	//cadastrar os novos usuarios
 	public function inseriruser()
 	{

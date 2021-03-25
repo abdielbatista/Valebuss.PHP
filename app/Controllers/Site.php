@@ -17,6 +17,7 @@ class Site extends BaseController
 	public function login()
 	{
 		$msgErro = $this->session->getFlashData('msgErro');
+		$this->session->set('logado', 0);
 		
 
 		$data = [

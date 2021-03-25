@@ -85,36 +85,38 @@ echo $this->include('includes/footer');
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="inline" method="post" action="<?php echo base_url("user/publica_carona") ?>" >
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Endereço de saida</label>
-                                    <input type="text" class="form-control" id="endsaida" aria-describedby="text" placeholder="Rua X, Vila, 20">
+                                    <input type="text" class="form-control" id="endsaida" name="endsaida" aria-describedby="text" placeholder="Rua X, Vila, 20" >
                                     <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Endereço de destino</label>
-                                    <input type="text" class="form-control" id="endchegada" aria-describedby="text" placeholder="Instituto Federal">
+                                    <input type="text" class="form-control" id="endchegada" name="endchegada" aria-describedby="text" placeholder="Instituto Federal"  >
                                     <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cidade de saida</label>
-                                    <input type="text" class="form-control" id="cidsaida" aria-describedby="text" placeholder="Araçuaí">
+                                    <input type="text" class="form-control" id="cidsaida" name="cidsaida" aria-describedby="text" placeholder="Araçuaí" >
                                     <small id="text" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cidade de chegada</label>
-                                    <input type="text" class="form-control" id="cidchegada" aria-describedby="text" placeholder="Araçuaí">
+                                    <input type="text" class="form-control" id="cidchegada" name="cidchegada" aria-describedby="text" placeholder="Araçuaí" >
                                     <small id="text" class="form-text text-muted"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">horario de saida </label>
+                                    <input type="time" class="form-control" id="horario" name="horario"   >
+                                    <small id="time" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Observação</label>
-                                    <input type="text" class="form-control" id="obs" aria-describedby="text" placeholder="Descreva a viagem caso seja nescessario">
+                                    <input type="text" class="form-control" id="obs" name="obs" aria-describedby="text" placeholder="Descreva a viagem caso seja nescessario">
                                     <small id="text" class="form-text text-muted"></small>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                </div>
+                                
                                 
                         </div>
                         <div class="modal-footer">

@@ -48,6 +48,8 @@ $routes->get('historico/hist', 'Historico::Hist');
 $routes->get('user/index_login', 'User::index_login');
 $routes->get('user/new_senha', 'User::new_senha');
 $routes->post('user/inseriruser', 'User::inseriruser');
+$routes->post('user/publica_carona', 'User::publica_carona');
+
 
 $routes->post('user/alteraSenha', 'User::alteraSenha');
 

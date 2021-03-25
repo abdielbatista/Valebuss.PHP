@@ -8,7 +8,7 @@ class Auth extends BaseController
 
     public function login()
     {
-
+        
         $email = $this->request->getPost('email');
         $senha = $this->request->getPost('senha');
 
