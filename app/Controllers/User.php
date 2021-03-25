@@ -14,6 +14,7 @@ class User extends BaseController
 			return redirect()->to(base_url('site/login'));
 		}
 		
+		
 		$session = session();
         //$log = $session->get('logado');
         //$nome = $session->get('nome');
@@ -22,6 +23,7 @@ class User extends BaseController
         $data['titulo'] = "CurtURL's - Página Inicial";
         $data['logado'] = $this->isLoggedIn();
 
+		/*
         $db = \Config\Database::connect();
 
         $query = $db->query("SELECT url_short, url_long, quant_acessos FROM url_on WHERE id = '$id'");
@@ -51,7 +53,8 @@ class User extends BaseController
 
 			return view('index_login', $data);
 
-		}
+		}*/
+		return view('index_login', $data);
 	}
 
 	//cadastrar os novos usuarios
@@ -99,11 +102,7 @@ class User extends BaseController
 		$dados = [
 			'nome' => $nome,
 			'email' => $email,
-			'senha' => password_hash($senha, PASSWORD_DEFAULT),
-			'ip'=> getHostByName(php_uname('n') ),
-			'data_login' => date('Y/m/d')  ,
-			'horario_login' =>  date('H:i:s')
-			
+			'senha' => password_hash($senha, PASSWORD_DEFAULT)
 		];
 		
 

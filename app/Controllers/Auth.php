@@ -18,6 +18,7 @@ class Auth extends BaseController
         foreach ($query->getResult() as $row) {
             if ($row->email == $email) {
                 if (password_verify($senha, $row->senha)) {
+                   
                     $db = \Config\Database::connect();
 
                     $query   = $db->query("SELECT nome, email FROM usuarios WHERE email = '$email' LIMIT 1");
@@ -25,29 +26,27 @@ class Auth extends BaseController
 
 
 
-                    date_default_timezone_set('America/fortaleza');
-                    $dados = [
-                        'email_user' => $email,
-                        'ip_user' => getHostByName(php_uname('n')),
-                        'data_login' => date('Y/m/d'),
-                        'horario_login' =>  date('H:i:s'),
-                        'tipo_evento' => 'LOGIN'
-                    ];
-                    $update_usuarios = [
+                    //date_default_timezone_set('America/fortaleza');
+                    /*$dados = [
+                        'email' => $email
+                    ];*/
+
+                    /*$update_usuarios = [
                         'ip' => getHostByName(php_uname('n')),
                         'data_login' => date('Y/m/d'),
                         'horario_login' =>  date('H:i:s')
-                    ];
+                    ];*/
 
-                    $usuarioModel = new \App\Models\eventos_login_model();
-                    $usuarioModel->insert($dados);
+                   // $usuarioModel = new \App\Models\eventos_login_model();
+                    ///$pessoaModel->insert($dados);
 
-                    $db      = \Config\Database::connect();
-                    $update_usuarioModel = $db->table('usuarios');
+                    //$db      = \Config\Database::connect();
+                    //$update_usuarioModel = $db->table('usuarios');
 
-                    $update_usuarioModel->where('email', $email);
-                    $update_usuarioModel->update($update_usuarios);
+                    //$update_usuarioModel->where('email', $email);
+                   // $update_usuarioModel->update($update_usuarios);
 
+                   
                     $this->session->set('logado', 1);
                     //$this->session->set('id', $row['id']);
                     $this->session->set('email', $row['email']);
