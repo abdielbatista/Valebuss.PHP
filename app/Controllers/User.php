@@ -67,10 +67,39 @@ class User extends BaseController
 		
 		$endsaida = $this->request->getPost('endsaida');
 		$endchegada = $this->request->getPost('endchegada');
+		$estado = $this->request->getPost('estado');
 		$cidsaida = $this->request->getPost('cidsaida');
 		$cidchegada = $this->request->getPost('cidchegada');
 		$horario = $this->request->getPost('horario');
 		$obs = $this->request->getPost('obs');
+
+		$dados_cidade_model = new \App\Models\dados_cidade_model();
+
+		//SELECT cid.cod_cidade , cid.id_estado, es.id, es.uf FROM  cidades  as cid JOIN  estados as es ON cid.id_estado = es.id WHERE cid.nome = 'Araçuaí'
+
+		$db      = \Config\Database::connect();
+
+		$builder1 = $db->table('estados');
+		$query1 = $db->query("SELECT cid.cod_cidade, es.id, es.uf FROM cidades as cid JOIN estados as es ON cid.id_estado = es.id WHERE cid.nome = '$cidsaida' and es.uf = '$estado' ");
+		$row1 = $query1->getRowArray();
+		$cidsaida = $row1['cod_cidade'];
+
+		
+		$query2 = $db->query("SELECT cid.cod_cidade, es.id FROM cidades as cid JOIN estados as es ON cid.id_estado = es.id WHERE cid.nome = '$cidchegada' and es.uf = '$estado' ");
+		$row2 = $query2->getRowArray();
+		$cidchegada = $row2['cod_cidade'];
+		
+		if($row1['uf'] != $estado ){
+			
+		}
+
+
+		/*$builder = $db->table('cidades');
+
+		$query = $db->query("SELECT cod_cidade ,nome , id_estado FROM cidades WHERE cod_cidade = '$id_estado1'  ");
+		$row = $query->getRowArray();
+		$cidsaida = $row['cod_cidade'];
+		*/
 
 		$public_carona_model = new \App\Models\public_carona_model();
 		
@@ -99,7 +128,8 @@ class User extends BaseController
         $data['titulo'] = "CurtURL's - Página Inicial";
         $data['logado'] = $this->isLoggedIn();
 
-		return redirect()->to(base_url('user/index_login'));
+		
+		//return redirect()->to(base_url('user/index_login'));
 
 		
 	}

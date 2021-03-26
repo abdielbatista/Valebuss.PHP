@@ -96,6 +96,41 @@ echo $this->include('includes/footer');
                                     <input type="text" class="form-control" id="endchegada" name="endchegada" aria-describedby="text" placeholder="Instituto Federal"  >
                                     <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" >Estado:</label>
+                                    <select name="estado" id="estado" >
+                                    <option selected>Abrir menu de seleção</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                    <p>Preencha o Estado correto para não gerar erro</p>
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cidade de saida</label>
                                     <input type="text" class="form-control" id="cidsaida" name="cidsaida" aria-describedby="text" placeholder="Araçuaí" >
@@ -111,6 +146,8 @@ echo $this->include('includes/footer');
                                     <input type="time" class="form-control" id="horario" name="horario"   >
                                     <small id="time" class="form-text text-muted"></small>
                                 </div>
+
+
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Observação</label>
                                     <input type="text" class="form-control" id="obs" name="obs" aria-describedby="text" placeholder="Descreva a viagem caso seja nescessario">
@@ -121,7 +158,7 @@ echo $this->include('includes/footer');
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Publicar</button>
+                            <button type="submit" class="btn btn-primary" >Publicar</button>
                         </div>
                     </div>
                 </div>
