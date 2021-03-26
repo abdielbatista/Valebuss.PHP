@@ -129,7 +129,7 @@ class User extends BaseController
         $data['logado'] = $this->isLoggedIn();
 
 		
-		//return redirect()->to(base_url('user/index_login'));
+		return redirect()->to(base_url('user/index_login'));
 
 		
 	}
