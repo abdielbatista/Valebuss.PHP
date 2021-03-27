@@ -89,10 +89,13 @@ class User extends BaseController
 		$row2 = $query2->getRowArray();
 		$cidchegada = $row2['cod_cidade'];
 		
-		if($row1['uf'] != $estado ){
-			
-		}
+		$builder1 = $db->table('viagem');
+		$query3 = $db->query("SELECT AUTO_INCREMENT FROM information_schema.tables WHERE table_name = 'viagens' AND table_schema = 'valebuss' ");
+		$row3 = $query3->getRowArray();
+		$auto_increment = $row3['AUTO_INCREMENT'] ;
+		
 
+		
 
 		/*$builder = $db->table('cidades');
 
@@ -117,8 +120,16 @@ class User extends BaseController
 		$public_carona_model = new \App\Models\public_carona_model(); 
 		$public_carona_model->insert($dados);
 		
-		
+		//inserindo na tabela viagem_cidade
+		$db2      = \Config\Database::connect();
 
+		$builder5 = $db2->table('viagem_cidade');
+		$data = [
+			'cod_viagem' => $auto_increment,
+			'cod_cidade'  => $cidchegada
+		];
+		
+		$builder5->insert($data);
 
 		//$session = session();
         //$log = $session->get('logado');

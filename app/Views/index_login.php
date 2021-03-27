@@ -129,7 +129,6 @@ echo $this->include('includes/footer');
                                         <option value="SE">Sergipe</option>
                                         <option value="TO">Tocantins</option>
                                     </select>
-                                    <p>Preencha o Estado correto para não gerar erro</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cidade de saida</label>
