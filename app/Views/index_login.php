@@ -163,7 +163,24 @@ echo $this->include('includes/footer');
                 </div>
             </div>
 
-
+<!-- card -->
+<div class="card" style="width: 15rem;">
+        <img src="foto/perfil.jpg" class="card-img-top" alt="...">
+                               <!--if (foto de perfil for "none" coloca uma foto padrao) -->
+        <div class="card-body">
+          <h5 class="card-title">  </h5>
+          <p class="card-text"> viagem de "A" pessoas usando mascara protetora, de cidsaida para cidchegada </p>
+          <div class="card-footer text-muted">
+            Horario: "horario"
+          </div>
+          <div class="card-footer text-muted">
+            Descriçao:
+          </div>
+          <a href="#" class="btn btn-primary">Aceitar Viajem</a>
+        </div>
+      </div>
+      <!-- -->
+      
 
             <div class="t">
                 <table class="table table-hover ">

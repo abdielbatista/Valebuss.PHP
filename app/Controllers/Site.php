@@ -7,7 +7,7 @@ class Site extends BaseController
     public function index()
 	{
 		$data = [
-			'titulo' => "CurtURL's - Pagina inicial",
+			'titulo' => "ValeBuss - Pagina inicial",
 			'logado' => $this->isLoggedIn()
 		] ;
 
@@ -21,7 +21,7 @@ class Site extends BaseController
 		
 
 		$data = [
-			'titulo' => "CurtURL's - Cadastro",
+			'titulo' => "ValeBuss - Cadastro",
 			'logado' => $this-> isLoggedIn(),
 			'msgErro' => $msgErro
 		] ;
@@ -35,7 +35,7 @@ class Site extends BaseController
 
 		$msgErro = $this->session->getFlashData('msgErro');
 		$data = [
-			'titulo' => "CurtURL's - Cadastro",
+			'titulo' => "ValeBuss - Cadastro",
 			'logado' => $this->isLoggedIn(),
 			'msgErro' => $msgErro
 		] ;
@@ -63,7 +63,7 @@ class Site extends BaseController
 	//view para definir senha
 	public function novasenha(){
 
-        $data ['titulo'] = "CurtURL's - Definir nova senha";
+        $data ['titulo'] = "ValeBuss - Definir nova senha";
         $data ['logado'] = $this->isLoggedIn();
 		
 	
