@@ -43,7 +43,7 @@ $routes->post('sendemail/verifica', 'SendEmail::verifica');
 //$routes->post('encurtador/shortUrl', 'Encurtador::shortUrl');
 //$routes->get('/(:alphanum)', 'Encurtador::desencurtar/$1');
 
-$routes->get('historico/hist', 'Historico::Hist');
+$routes->get('viagens/viags', 'Viagens::Viags');
 
 $routes->get('user/index_login', 'User::index_login');
 $routes->get('user/new_senha', 'User::new_senha');

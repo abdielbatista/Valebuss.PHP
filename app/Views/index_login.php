@@ -123,12 +123,19 @@ echo $this->include('includes/footer');
             </div>
 
 <!-- card -->
-<div class="card" style="width: 15rem;">
-        <img src="foto/perfil.jpg" class="card-img-top" alt="...">
+<div class="card" style="width: 25rem;">
+    <?php if (isset($viagens)) : ?>
+    <?php foreach ($viagens as $v) : ?>
+
                                <!--if (foto de perfil for "none" coloca uma foto padrao) -->
         <div class="card-body">
-          <h5 class="card-title">  </h5>
-          <p class="card-text"> viagem de "A" pessoas usando mascara protetora, de cidsaida para cidchegada </p>
+          <h5 class="card-title">Carona para <?php echo $v->end_destino ?></h5>
+          <p class="card-text">Endereço de saida: <?php echo $v->end_origem ?></p>
+          <p class="card-text">Cidade origem: <?php echo $v->cidade_origem ?></p>
+          <p class="card-text">Cidade destino: <?php echo $v->cidade_destino ?></p>
+          <p class="card-text">Hora: <?php echo $v->horario_saida ?></p>
+          <p class="card-text">Descrição: <?php echo $v->descricao ?></p>
+          <p class="card-text">Publicado por: <?php echo $v->cod_usuario ?></p>
           <div class="card-footer text-muted">
             Horario: "horario"
           </div>
@@ -139,6 +146,8 @@ echo $this->include('includes/footer');
         </div>
       </div>
       <!-- -->
+      <?php endforeach ?>
+      <?php endif ?>
       
 
             

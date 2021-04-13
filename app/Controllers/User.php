@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
 
+use CodeIgniter\CLI\CLI;
+
 class User extends BaseController
 {
 	//parte que so pode ser acessada se estiver logado
@@ -15,46 +17,30 @@ class User extends BaseController
 		}
 		
 		
-		$session = session();
-        //$log = $session->get('logado');
-        //$nome = $session->get('nome');
-        $id = $session->get('id');
+		else {
 
-        $data['titulo'] = "CurtURL's - Página Inicial";
-        $data['logado'] = $this->isLoggedIn();
+            $session = session();
+            $log = $session->get('email');
 
-		/*
-        $db = \Config\Database::connect();
+            $data['titulo'] = "Página inicial CU";
+            $data['logado'] = $this->isLoggedIn();
 
-        $query = $db->query("SELECT url_short, url_long, quant_acessos FROM url_on WHERE id = '$id'");
-		$row = $query->getRowArray();
+            $viagensModel = new \App\Models\public_carona_model(); 
 
-		$query = $db->query("SELECT COUNT(id) as rep FROM url_on WHERE id = '$id'");
-		$result   = $query->getRow();
+            $viagensPubli = $viagensModel->findAll();
 
-		$quant = $result->rep;
-		
-		if($quant > 0){
+            //$urlUser = $usuarioModel->where('email_user', $log)->findAll();
+            //d($urlUser);
 
-			$data['url_long'] = $row['url_long'];
-			$data['url_short'] = $row['url_short'];
-			$data['quant_acessos'] = $row['quant_acessos'];
-			$data['quant'] = $quant;
-			//$data['rep'] = $row;					
+            
 
-			return view('index_login', $data);
+                //$data['urli'] = $raizSistema;
+                $data['titulo'] = "Página Inicial";
+                $data['viagens'] = $viagensPubli;
 
-		}else{
-
-			$data['titulo'] = "CurtURL's - Página Inicial";
-			$data['logado'] = $this->isLoggedIn();
-			//$data['historico'] = "";
-			$data['erro'] = 'Nenhuma Url encontrada em seu histórico';
-
-			return view('index_login', $data);
-
-		}*/
-		return view('index_login', $data);
+                return view('index_login.php', $data);
+			
+		}
 	}
 
 	public function minhas_viagens(){
