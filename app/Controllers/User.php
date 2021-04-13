@@ -57,6 +57,27 @@ class User extends BaseController
 		return view('index_login', $data);
 	}
 
+	public function minhas_viagens(){
+		if(! $this->isLoggedIn()){
+
+			$this->session->setFlashData ('msgErro', 'Faça o login primeiro.');
+
+			return redirect()->to(base_url('site/login'));
+		}
+
+		$session = session();
+        //$log = $session->get('logado');
+        //$nome = $session->get('nome');
+        $id = $session->get('id');
+
+        $data['titulo'] = "ValeBuss - Minhas Viagens";
+        $data['logado'] = $this->isLoggedIn();
+
+		
+		return view('minhas_viagens', $data);
+
+	}
+
 	public function publica_carona(){
 		if(! $this->isLoggedIn()){
 
@@ -70,6 +91,7 @@ class User extends BaseController
 		$estado = $this->request->getPost('estado');
 		$cidsaida = $this->request->getPost('cidsaida');
 		$cidchegada = $this->request->getPost('cidchegada');
+		$data =  $this->request->getPost('data');
 		$horario = $this->request->getPost('horario');
 		$obs = $this->request->getPost('obs');
 
@@ -114,7 +136,8 @@ class User extends BaseController
 			'cidade_destino' => $cidchegada,
 			'horario_saida' => $horario,
 			'descricao' =>  $obs,
-			'cod_usuario' => "gabasan12@gmail.com"
+			'cod_usuario' => $_SESSION['email'],
+			'data_viagem' => $data
 		];
 
 		$public_carona_model = new \App\Models\public_carona_model(); 
@@ -279,100 +302,4 @@ class User extends BaseController
 	}
 
 
-	/*
-	public function inserir()
-	{
-		
-
-		$data['msg'] = "";
-		$data['erro_email'] = "";
-		$data['erro_nome_senha'] = "";
-
-
-		$nome = $this->request->getPost('nome');
-		$email = $this->request->getPost('email');
-		$senha = $this->request->getPost('senha');
-
-		if (filter_var($email, FILTER_VALIDATE_EMAIL) == FALSE) {
-			$data['titulo'] = "CurtURL's - Página Inicial";
-			$data['logado'] = 0;
-			$data['erro_email'] = 'Email inválido.';
-
-			//return redirect()->to(base_url('index.php'));
-			return view('cadastro.php', $data);
-			
-		}
-		
-		if($nome == '' || $senha == ''){
-			$data['titulo'] = "CurtURL's - Página Inicial";
-			$data['logado'] = 0;
-			$data['erro_nome_senha'] = 'Prencha todos os compos por favor!';
-		
-			return view('cadastro.php', $data);
-		}
-		else{
-
-			$pessoaModel = new \App\Models\pessoa_model(); 
-
-			$query = $pessoaModel->get();
-			foreach ($query->getResult() as $row){
-				if($row->email == $email){
-					//$this->session->set('logado', 1);
-					$this->session->setFlashData ('msgErro', 'Email existente, faça o login!');
-					return redirect()->to(base_url('site/login'));
-				}            
-			}
-
-			
-				
-			$usuarioModel = new \App\Models\user_model(); 
-
-			$dados = [
-				'nome' => $nome,
-				'email' => $email,
-				'senha' => password_hash($senha, PASSWORD_DEFAULT)
-			];
-
-				$usuarioModel->insert($dados);
-				$this->session->set('logado', 1);
-
-				$this->session->set('nome', $nome);
-				$this->session->set('email', $email);
-				
-				return redirect()->to(base_url('user/index_login'));		
-		}	
-		
-
-	}
-
-	public function Historico()
-    {
-		
-		$session = session();
-        //$log = $session->get('logado');
-        //$nome = $session->get('nome');
-        $id = $session->get('id');
-
-        $data['titulo'] = "CurtURL's - Página Inicial";
-        $data['logado'] = $this->isLoggedIn();
-        $data['historico'] = "";
-        $data['erro'] = 'Nenhuma Url encontrada em seu histórico';
-
-
-        $db = \Config\Database::connect();
-
-        $query = $db->query("SELECT url_short, url_long, quant_acessos FROM url_on WHERE id = '$id'");
-        $row = $query->getRowArray();
-
-        $data = [
-            //'id' => $row['id'],
-            'url_long' => $row['url_long'],
-            'url_short' => ['url_short'],
-            'quant_acessos' => ['quant_acessos']
-        ];
-
-		return view('index_login', $data);
-	}*/
-
-	//----------------------------------------------------
-}
+}	

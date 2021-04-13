@@ -10,7 +10,7 @@ class public_carona_model extends Model
         protected $returnType     = 'object';
         protected $useSoftDeletes = false;
     
-protected $allowedFields = ['cod_viagem','end_origem', 'end_destino', 'cidade_origem', 'cidade_destino', 'horario_saida', 'descricao', 'cod_usuario'];
+protected $allowedFields = ['cod_viagem','end_origem', 'end_destino', 'cidade_origem', 'cidade_destino', 'horario_saida', 'descricao', 'cod_usuario', 'data_viagem'];
     
         protected $useTimestamps = false;
         protected $createdField  = 'created_at';

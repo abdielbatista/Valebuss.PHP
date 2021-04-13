@@ -40,15 +40,18 @@ $routes->get('site/senha', 'Site::senha');
 $routes->post('sendemail/verifica', 'SendEmail::verifica');
 
 
-$routes->post('encurtador/shortUrl', 'Encurtador::shortUrl');
-$routes->get('/(:alphanum)', 'Encurtador::desencurtar/$1');
+//$routes->post('encurtador/shortUrl', 'Encurtador::shortUrl');
+//$routes->get('/(:alphanum)', 'Encurtador::desencurtar/$1');
 
 $routes->get('historico/hist', 'Historico::Hist');
 
 $routes->get('user/index_login', 'User::index_login');
 $routes->get('user/new_senha', 'User::new_senha');
+$routes->get('user/minhas_viagens', 'User::minhas_viagens');
 $routes->post('user/inseriruser', 'User::inseriruser');
 $routes->post('user/publica_carona', 'User::publica_carona');
+
+
 
 
 $routes->post('user/alteraSenha', 'User::alteraSenha');

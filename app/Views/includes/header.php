@@ -20,10 +20,12 @@
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,500;1,400&display=swap" rel="stylesheet">
+
 
 
 </head>
@@ -86,6 +88,7 @@
             </button>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="<?php echo base_url("user/minhas_viagens") ?>">Minhas viagens</a>
                 <a class="dropdown-item" href="<?php echo base_url("auth/logout") ?>">Sair</a>
             </div>
         </div>
@@ -94,21 +97,7 @@
 
     </nav>
 
-    <script>
-        function abreModal() {
-            $("#mymodal").modal({
-                show: true
-            });
-        }
-    </script>
-
-<script>
-        function abreModal2() {
-            $('#mymodal').modal('toggle');
-            window.location.href = "http://localhost/curt-urls/public/user/new_senha";
-            
-        }
-    </script> 
+    
 
 
 
