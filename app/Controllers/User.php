@@ -58,6 +58,7 @@ class User extends BaseController
 	}
 
 	public function minhas_viagens(){
+		$raizSistema = "http://localhost/valebuss/public/";
 		if(! $this->isLoggedIn()){
 
 			$this->session->setFlashData ('msgErro', 'Faça o login primeiro.');
@@ -70,13 +71,125 @@ class User extends BaseController
         //$nome = $session->get('nome');
         $id = $session->get('id');
 
+		$log = $session->get('email');
+
         $data['titulo'] = "ValeBuss - Minhas Viagens";
         $data['logado'] = $this->isLoggedIn();
 
+
+		//buscando dados para apresentar na tela de viagens/postadas
+	
+		$viagensModel = new \App\Models\public_carona_model(); 
+
+        $dados_viagens = $viagensModel->where('cod_usuario', $log)->findAll();
+
+		$dados_cidade_model = new \App\Models\dados_cidade_model();
+
+		if(count($dados_viagens) != 0){
+			$db      = \Config\Database::connect();
+
+			$x = 1;
+			arsort($dados_viagens);
+			foreach($dados_viagens as $viagens){
+			
+				$query1 = $db->query("SELECT nome FROM cidades WHERE cod_cidade = '$viagens->cidade_destino' ");
+				$row1 = $query1->getRowArray();
+				
+				$query2 = $db->query("SELECT nome FROM cidades WHERE cod_cidade = '$viagens->cidade_origem' ");
+				$row2 = $query2->getRowArray();
+				
+				$viagens->cidade_destino = $row1['nome'];
+				$viagens->cidade_origem = $row2['nome'];
+			
+				$viagens->data_viagem = date('d/m/Y',strtotime($viagens->data_viagem));
+				$x++;
+			}
+
+		}
+	
+
+		//buscando dados para apresenntar na tela de viagens/participan
+		$user_viagem_model = new \App\Models\user_viagem_model(); 
+
+        $user_viagem = $user_viagem_model->where('cod_usuario', $log )->findAll();
 		
-		return view('minhas_viagens', $data);
+		
+
+
+		$viagensModel2 = new \App\Models\public_carona_model(); 
+
+		$z = 1;
+		arsort($user_viagem);
+        foreach($user_viagem as $viagens_m2){
+			//echo $viagens_m2->cod_viagem;
+			$va = $viagens_m2->cod_viagem;
+			
+			$z++;
+		}
+		
+		//print_r($user_viagem);
+
+		
+		$dados_viagens2 = $viagensModel2->findAll();
+		
+		//print_r($dados_viagens2);
+		//$dados_cidade_model2 = new \App\Models\dados_cidade_model();
+		//$t = count($dados_viagens2);
+	
+
+		if(count($dados_viagens2) != 0){
+			$db      = \Config\Database::connect();
+
+			$x = 1;
+			arsort($dados_viagens2);
+			foreach($dados_viagens2 as $userviagem2){
+			
+				$query1 = $db->query("SELECT nome FROM cidades WHERE cod_cidade = '$userviagem2->cidade_destino' ");
+				$row1 = $query1->getRowArray();
+				
+				$query2 = $db->query("SELECT nome FROM cidades WHERE cod_cidade = '$userviagem2->cidade_origem' ");
+				$row2 = $query2->getRowArray();
+				
+				$userviagem2->cidade_destino = $row1['nome'];
+				$userviagem2->cidade_origem = $row2['nome'];
+			
+				$userviagem2->data_viagem = date('d/m/Y',strtotime($userviagem2->data_viagem));
+				$x++;
+			}
+
+		}
+	
+	
+		//usuarios cadastrados na viagem x
+		$userModel = new \App\Models\user_viagem_model();
+		$dados_user = $userModel->findAll(); 
+		
+		
+
+
+		if(count($dados_viagens) == NULL ){
+			$data['titulo'] = "ValeBuss - Minhas Viagens";
+			$data['erro1'] = "Nenhuma viagem encontrada";
+		}
+		if( count($user_viagem) == NULL){
+			$data['titulo'] = "ValeBuss - Minhas Viagens";
+			$data['erro2'] = "Nenhuma viagem encontrada";
+		}
+
+		$data['viagem_null'] = $raizSistema;
+		$data['dados_viagens'] = $dados_viagens;
+		$data['dados_viagens2'] = $dados_viagens2;
+		$data['user_viagem'] = $user_viagem;
+		$data['dados_user'] = $dados_user;
+		//return view('minhas_viagens.php', $data);
+	
+		
+		return view('minhas_viagens', $data);	
 
 	}
+
+
+	
 
 	public function publica_carona(){
 		if(! $this->isLoggedIn()){
@@ -216,19 +329,39 @@ class User extends BaseController
 			'senha' => password_hash($senha, PASSWORD_DEFAULT)
 		];
 		
-
-		
-
-		
+		//inserindo usuario
 		$usuarioModel = new \App\Models\user_model(); 
 		$usuarioModel->insert($dados);
-		$this->session->set('logado', 1);
+		
 
+
+		//inserir veiculo
+		$placa = $this->request->getPost('placa');
+		$marca = $this->request->getPost('marca');
+		$modelo = $this->request->getPost('modelo');
+		$qtlugares = $this->request->getPost('qtlugares');
+
+		
+		$dados_veiculos = [
+			'placa' => $placa,
+			'marca' => $marca,
+			'modelo' => $modelo,
+			'qt_lugares' => $qtlugares,
+			'cod_usuario' => $email
+		];
+
+		
+
+		//inserindo veiculo 
+		$veiculo_model = new \App\Models\veiculo_model();
+		$veiculo_model->insert($dados_veiculos);
+
+
+
+		$this->session->set('logado', 1);
 		$this->session->set('nome', $nome);
 		$this->session->set('email', $email);
 		
-
-
 		
 		return redirect()->to(base_url('user/index_login'));		
 		

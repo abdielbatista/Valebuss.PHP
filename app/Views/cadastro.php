@@ -52,10 +52,79 @@ echo $this->include('includes/footer');
             <label for="senhacon"></label>
         </div>
 
+        <b>Você possui algum Veiculo?</b><br>
+        <button class="btn btn-outline-info" type="button" onclick="aparecer('minhaDiv')">Sim</button>
+        <button class="btn btn-outline-info"  type="button" onclick="sumir('minhaDiv')">Não</button><br><br>
+    
+
+        <div id="minhaDiv" style="display:none">
+            
+            <div class="form-label-group">
+                <input type="text" class="form-control border border-dark mr-sm-2" placeholder=" Placa do veiculo" id="placa" name="placa">
+                <small id="placaHelp" class="form-text text-muted">ex: abc1234 ou abc1a34</small>
+
+                <label for="placa"></label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="text" class="form-control border border-dark mr-sm-2" placeholder=" Marca do veiculo" id="marca" name="marca">
+                <small id="marcaHelp" class="form-text text-muted">ex: Toyota</small>
+                <label for="marca"></label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="text" class="form-control border border-dark mr-sm-2" placeholder=" Modelo do veiculo" id="modelo" name="modelo">
+                <small id="modeloHelp" class="form-text text-muted">ex: Corolla</small>
+                <label for="modelo"></label>
+            </div>
+
+            <div class="form-label-group">
+                <input type="number" class="form-control border border-dark mr-sm-2" placeholder="Maximo de Passageiros" id="qtlugares" name="qtlugares">
+
+                <label for="qtlugares"></label>
+            </div>
+            
+
+        </div>
+
         <button type="submit" class="btn btn-dark col border border-dark font-weight-bold">Cadastrar</button>
         <br>
         <br>
     </form>
+ 
 </div>
 
+<script>
 
+
+function aparecer(el) {
+  var display = document.getElementById(el).style.display;
+  if (display == "none")
+    document.getElementById(el).style.display = 'block';
+
+
+  
+}
+
+function sumir(el) {
+  var display = document.getElementById(el).style.display;
+  if (display != "none")
+  document.getElementById(el).style.display = 'none';
+}
+
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "<b>Hello World</b>";
+}
+
+function myFunction2() {
+  document.getElementById("demo").innerHTML = "";
+}
+</script>
+
+<?php
+
+//footer padrão
+echo $this->include('includes/footer');
+
+?>
