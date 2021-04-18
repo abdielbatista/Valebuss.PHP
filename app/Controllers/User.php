@@ -29,6 +29,35 @@ class User extends BaseController
 
             $viagensPubli = $viagensModel->findAll();
 
+		
+			
+
+			//$dados_viagens = $viagensModel->where('cod_usuario', $log)->findAll();
+
+			$dados_cidade_model = new \App\Models\dados_cidade_model();
+
+			if(count($viagensPubli) != 0){
+				$db      = \Config\Database::connect();
+
+				$x = 1;
+				arsort($viagensPubli);
+				foreach($viagensPubli as $viagens){
+				
+					$query1 = $db->query("SELECT nome FROM cidades WHERE cod_cidade = '$viagens->cidade_destino' ");
+					$row1 = $query1->getRowArray();
+					
+					$query2 = $db->query("SELECT nome FROM cidades WHERE cod_cidade = '$viagens->cidade_origem' ");
+					$row2 = $query2->getRowArray();
+					
+					$viagens->cidade_destino = $row1['nome'];
+					$viagens->cidade_origem = $row2['nome'];
+				
+					$viagens->data_viagem = date('d/m/Y',strtotime($viagens->data_viagem));
+					$x++;
+				}
+
+			}
+
             //$urlUser = $usuarioModel->where('email_user', $log)->findAll();
             //d($urlUser);
 
@@ -257,6 +286,8 @@ class User extends BaseController
         //$log = $session->get('logado');
         //$nome = $session->get('nome');
         //$id = $session->get('id');
+
+		
 
         $data['titulo'] = "CurtURL's - Página Inicial";
         $data['logado'] = $this->isLoggedIn();
