@@ -136,13 +136,9 @@ echo $this->include('includes/footer');
           <p class="card-text">Hora: <?php echo $v->horario_saida ?></p>
           <p class="card-text">Descrição: <?php echo $v->descricao ?></p>
           <p class="card-text">Publicado por: <?php echo $v->cod_usuario ?></p>
-          <div class="card-footer text-muted">
-            Horario: "horario"
-          </div>
-          <div class="card-footer text-muted">
-            Descriçao:
-          </div>
-          <a href="#" class="btn btn-primary">Aceitar Viajem</a>
+          <form id="inline" method="post" action="<?php echo base_url("user/aceitar") ?>" >
+            <button type="submit" class="btn btn-primary">Aceitar Viajem</button>
+          </form>
         </div>
       </div>
       <!-- -->
