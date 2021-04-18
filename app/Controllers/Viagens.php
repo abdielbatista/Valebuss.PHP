@@ -44,4 +44,23 @@ class Viagens extends BaseController
             }
         }
     }
+
+    public function aceitar(){
+
+        $email = $this->request->getPost('emailuser');
+		$codviagem = $this->request->getPost('codviagem');
+
+        $dados = [
+			'cod_usuario' => $email,
+			'cod_viagem' => $codviagem,
+		];
+
+		$viagemModel = new \App\Models\viagem_model();
+		$viagemModel->insert($dados);
+
+       
+
+        return redirect()->to(base_url('user/minhas_viagens'));
+
+    }
 }

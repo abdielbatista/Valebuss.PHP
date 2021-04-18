@@ -118,6 +118,7 @@ echo $this->include('includes/footer');
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-primary" >Publicar</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -136,7 +137,14 @@ echo $this->include('includes/footer');
           <p class="card-text">Hora: <?php echo $v->horario_saida ?></p>
           <p class="card-text">Descrição: <?php echo $v->descricao ?></p>
           <p class="card-text">Publicado por: <?php echo $v->cod_usuario ?></p>
-          <form id="inline" method="post" action="<?php echo base_url("user/aceitar") ?>" >
+
+          <form id="inline" method="post" action="<?php echo base_url("viagens/aceitar") ?>">
+            <?php $email = $_SESSION['email']; ?>
+            <input hidden type="text" class="form-control" id="emailuser" name="emailuser" value="<?php echo $email ?>">
+            <label hidden for="codviagem"><?php echo $v->cod_viagem ?></label>
+            <input hidden type="text" class="form-control" id="codviagem" name="codviagem" value="<?php echo $v->cod_viagem ?>">
+
+
             <button type="submit" class="btn btn-primary">Aceitar Viajem</button>
           </form>
         </div>

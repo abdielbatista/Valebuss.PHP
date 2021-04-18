@@ -48,6 +48,9 @@ $routes->get('viagens/viags', 'Viagens::Viags');
 $routes->get('user/index_login', 'User::index_login');
 $routes->get('user/new_senha', 'User::new_senha');
 $routes->get('user/minhas_viagens', 'User::minhas_viagens');
+
+$routes->post('viagens/aceitar', 'Viagens::aceitar');
+
 $routes->post('user/inseriruser', 'User::inseriruser');
 $routes->post('user/publica_carona', 'User::publica_carona');
 
