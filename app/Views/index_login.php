@@ -128,7 +128,7 @@ echo $this->include('includes/footer');
     <?php if (isset($viagens)) : ?>
     <?php foreach ($viagens as $v) : ?>
 
-                               <!--if (foto de perfil for "none" coloca uma foto padrao) -->
+        <!--if (foto de perfil for "none" coloca uma foto padrao) -->
         <div class="card-body">
           <h5 class="card-title">Carona para <?php echo $v->end_destino ?></h5>
           <p class="card-text">Endereço de saida: <?php echo $v->end_origem ?></p>
@@ -148,10 +148,11 @@ echo $this->include('includes/footer');
             <button type="submit" class="btn btn-primary">Aceitar Viajem</button>
           </form>
         </div>
-      </div>
-      <!-- -->
-      <?php endforeach ?>
-      <?php endif ?>
+         <!-- -->
+        <?php endforeach ?>
+        <?php endif ?>
+</div>
+     
       
 
             
