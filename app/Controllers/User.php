@@ -27,7 +27,7 @@ class User extends BaseController
 
             $viagensModel = new \App\Models\public_carona_model(); 
 
-            $viagensPubli = $viagensModel->findAll();
+            $viagensPubli = $viagensModel->where('cod_usuario !=',  $log )->findAll();
 
 		
 			
@@ -60,12 +60,12 @@ class User extends BaseController
 
             //$urlUser = $usuarioModel->where('email_user', $log)->findAll();
             //d($urlUser);
-
-            
+			
 
                 //$data['urli'] = $raizSistema;
                 $data['titulo'] = "Página Inicial";
                 $data['viagens'] = $viagensPubli;
+				
 
                 return view('index_login.php', $data);
 			

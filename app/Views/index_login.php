@@ -122,12 +122,21 @@ echo $this->include('includes/footer');
                     </div>
                 </div>
             </div>
-
+            <!-- erro caso o usuario ja esteja cadastrado na viagem -->
+            <?php if (isset($usuario_cad)){ ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <?php echo "<center>Voçê já está cadastrado nesta carona!</center>"; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php } ?>
+            
             <!-- card style="width: 25rem;" -->
             <div class="container " >
                 <div class="row">
                     <?php if (isset($viagens)) : ?>
-                    <?php foreach ($viagens as $v) : ?>
+                    <?php foreach ($viagens as $v) :?>
 
                         <!--if (foto de perfil for "none" coloca uma foto padrao) -->
                         <div class="card-body border" style="width:20rem">
@@ -145,12 +154,13 @@ echo $this->include('includes/footer');
                                 <label hidden for="codviagem"><?php echo $v->cod_viagem ?></label>
                                 <input hidden type="text" class="form-control" id="codviagem" name="codviagem" value="<?php echo $v->cod_viagem ?>">
 
-
+                                
                                 <button type="submit" class="btn btn-primary">Aceitar Viajem</button>
                             </form>
                         </div>
                         <!-- -->
-                        <?php endforeach ?>
+                        <?php 
+                        endforeach ?>
                         <?php endif ?>
                 </div>    
             </div>
