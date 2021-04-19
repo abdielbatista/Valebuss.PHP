@@ -42,12 +42,12 @@ echo $this->include('includes/footer');
                             <form id="inline" method="post" action="<?php echo base_url("user/publica_carona") ?>" >
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Endereço de saida</label>
-                                    <input type="text" class="form-control" id="endsaida" name="endsaida" aria-describedby="text" placeholder="Rua X, Vila, 20" >
+                                    <input type="text" class="form-control" id="endsaida" name="endsaida" aria-describedby="text" placeholder="Rua X, Vila, 20"  required>
                                     <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Endereço de destino</label>
-                                    <input type="text" class="form-control" id="endchegada" name="endchegada" aria-describedby="text" placeholder="Instituto Federal"  >
+                                    <input type="text" class="form-control" id="endchegada" name="endchegada" aria-describedby="text" placeholder="Instituto Federal"  required>
                                     <small id="text" class="form-text text-muted">Rua; Bairro; Numero</small>
                                 </div>
 
@@ -86,22 +86,22 @@ echo $this->include('includes/footer');
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cidade de saida</label>
-                                    <input type="text" class="form-control" id="cidsaida" name="cidsaida" aria-describedby="text" placeholder="Araçuaí" >
+                                    <input type="text" class="form-control" id="cidsaida" name="cidsaida" aria-describedby="text" placeholder="Araçuaí" required>
                                     <small id="text" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Cidade de chegada</label>
-                                    <input type="text" class="form-control" id="cidchegada" name="cidchegada" aria-describedby="text" placeholder="Araçuaí" >
+                                    <input type="text" class="form-control" id="cidchegada" name="cidchegada" aria-describedby="text" placeholder="Araçuaí" required>
                                     <small id="text" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Data </label>
-                                    <input type="date" class="form-control" id="data" name="data"   >
+                                    <input type="date" class="form-control" id="data" name="data"   required>
                                     <small id="data" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">horario de saida </label>
-                                    <input type="time" class="form-control" id="horario" name="horario"   >
+                                    <input type="time" class="form-control" id="horario" name="horario"   required>
                                     <small id="time" class="form-text text-muted"></small>
                                 </div>
 
@@ -159,3 +159,9 @@ echo $this->include('includes/footer');
     </div>
 </div>
 
+<?php
+
+//footer padrão
+echo $this->include('includes/footer');
+
+?>
