@@ -358,21 +358,21 @@ class User extends BaseController
 		$modelo = $this->request->getPost('modelo');
 		$qtlugares = $this->request->getPost('qtlugares');
 
-		
-		$dados_veiculos = [
-			'placa' => $placa,
-			'marca' => $marca,
-			'modelo' => $modelo,
-			'qt_lugares' => $qtlugares,
-			'cod_usuario' => $email
-		];
+		if($placa != "" and $marca != "" and $modelo != "" and $qtlugares != ""){
+			$dados_veiculos = [
+				'placa' => $placa,
+				'marca' => $marca,
+				'modelo' => $modelo,
+				'qt_lugares' => $qtlugares,
+				'cod_usuario' => $email
+			];
 
-		
+			
 
-		//inserindo veiculo 
-		$veiculo_model = new \App\Models\veiculo_model();
-		$veiculo_model->insert($dados_veiculos);
-
+			//inserindo veiculo 
+			$veiculo_model = new \App\Models\veiculo_model();
+			$veiculo_model->insert($dados_veiculos);
+		}
 
 
 		$this->session->set('logado', 1);
