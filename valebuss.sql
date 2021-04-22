@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Mar-2021 às 02:01
--- Versão do servidor: 10.4.16-MariaDB
--- versão do PHP: 7.4.12
+-- Tempo de geração: 22-Abr-2021 às 23:10
+-- Versão do servidor: 10.4.11-MariaDB
+-- versão do PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -5667,7 +5668,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`nome`, `email`, `senha`) VALUES
-('gabriel de souza miranda', 'gabasan12@gmail.com', '$2y$10$qgShChLoGz0Mozjly60Zb.CF/7rr3vN627dqtZ/ZoL9kijZShlyzq');
+('Abdiel Batista dos Santos', 'abdielb@yahoo.com', '$2y$10$pLNbpkQxW0LfUGB5yL10seRDiX0RpG6Q0kuwhWLnqmo3v8Rz7h/Ci'),
+('gabriel de souza miranda', 'gabasan12@gmail.com', '$2y$10$qgShChLoGz0Mozjly60Zb.CF/7rr3vN627dqtZ/ZoL9kijZShlyzq'),
+('Maria Pereira', 'teste@teste.com', '$2y$10$knkCT6cIf24YOJn6KRzCEuK5wKeJe.Ic/Ovg9ZFurFjU6dSSqxLse');
 
 -- --------------------------------------------------------
 
@@ -5679,6 +5682,13 @@ CREATE TABLE `usuario_viagem` (
   `cod_usuario` varchar(100) NOT NULL,
   `cod_viagem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `usuario_viagem`
+--
+
+INSERT INTO `usuario_viagem` (`cod_usuario`, `cod_viagem`) VALUES
+('teste@teste.com', 8);
 
 -- --------------------------------------------------------
 
@@ -5705,6 +5715,14 @@ CREATE TABLE `viagem_cidade` (
   `cod_cidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `viagem_cidade`
+--
+
+INSERT INTO `viagem_cidade` (`cod_viagem`, `cod_cidade`) VALUES
+(8, 1601),
+(9, 1601);
+
 -- --------------------------------------------------------
 
 --
@@ -5719,8 +5737,17 @@ CREATE TABLE `viagens` (
   `cidade_destino` int(11) NOT NULL,
   `horario_saida` time NOT NULL,
   `descricao` text NOT NULL,
-  `cod_usuario` varchar(100) NOT NULL
+  `cod_usuario` varchar(100) NOT NULL,
+  `data_viagem` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `viagens`
+--
+
+INSERT INTO `viagens` (`cod_viagem`, `end_origem`, `end_destino`, `cidade_origem`, `cidade_destino`, `horario_saida`, `descricao`, `cod_usuario`, `data_viagem`) VALUES
+(8, 'Praça do Forum', 'IFNMG', 1601, 1601, '19:00:00', 'NENHUMA', 'abdielb@yahoo.com', '2021-04-20'),
+(9, 'Praça do Forum', 'IFNMG', 1601, 1601, '19:00:00', 'NENHUMA', 'abdielb@yahoo.com', '2021-04-20');
 
 --
 -- Índices para tabelas despejadas
@@ -5795,7 +5822,7 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT de tabela `viagens`
 --
 ALTER TABLE `viagens`
-  MODIFY `cod_viagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_viagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para despejos de tabelas
